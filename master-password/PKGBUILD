@@ -17,4 +17,5 @@ build() {
 package() {
    cd "MasterPassword-${pkgver//_/-}/platform-independent/cli-c"
    install -Dm755 mpw "$pkgdir/usr/bin/mpw"
+   ln -sf "/usr/bin/mpw" "$pkgdir/usr/bin/$pkgname"
 }
