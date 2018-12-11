@@ -7,25 +7,25 @@ arch=(x86_64)
 url='https://gitlab.com/MasterPassword/MasterPassword'
 
 depends=(
-    'libsodium'
-    'json-c'
-    'ncurses'
+  'libsodium'
+  'json-c'
+  'ncurses'
 )
 conflicts=(
-    'masterpassword-cli',
-    'masterpassword-cli-git'
+  'masterpassword-cli',
+  'masterpassword-cli-git'
 )
 
 source=(https://gitlab.com/MasterPassword/MasterPassword/-/archive/${pkgver//_/-}/MasterPassword-${pkgver//_/-}.tar.gz)
 sha512sums=(2fcea7082c1a0771b3dcea7d9adf1cb7624d5ccde6cfaaac33b00af918f666f78b5b89f38a47b3de9add32fe86f1fa1003b687d6a4e081e3ba2706e0c5a127a4)
 
 build() {
-   cd "MasterPassword-${pkgver//_/-}/platform-independent/cli-c"
-   ./build
+  cd "MasterPassword-${pkgver//_/-}/platform-independent/cli-c"
+  ./build
 }
 
 package() {
-   cd "MasterPassword-${pkgver//_/-}/platform-independent/cli-c"
-   install -Dm755 mpw "$pkgdir/usr/bin/mpw"
-   ln -sf "/usr/bin/mpw" "$pkgdir/usr/bin/$pkgname"
+  cd "MasterPassword-${pkgver//_/-}/platform-independent/cli-c"
+  install -Dm755 mpw "$pkgdir/usr/bin/mpw"
+  ln -sf "/usr/bin/mpw" "$pkgdir/usr/bin/$pkgname"
 }
