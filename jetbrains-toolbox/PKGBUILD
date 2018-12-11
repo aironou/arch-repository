@@ -1,0 +1,22 @@
+pkgname=jetbrains-toolbox
+pkgver=1.12.4481
+pkgrel=1
+pkgdesc='A control panel for yours tools and projects'
+
+arch=(x86_64)
+url='https://www.jetbrains.com/toolbox'
+
+depends=(
+  glibc
+  fuse
+)
+
+options=(!strip)
+
+source=(https://download.jetbrains.com/toolbox/${pkgname}-${pkgver}.tar.gz)
+sha512sums=(a442d65159eada5388a52976a26472ba9930a74e2c33d10090528f67b11c2f88c4a1835f79601e6f794087395c308317a34a26be8ad50f6f3d87a80743f53111)
+
+package() {
+  cd "${pkgname}-${pkgver}"
+  install -Dm755 jetbrains-toolbox "$pkgdir/usr/bin/jetbrains-toolbox"
+}
