@@ -1,0 +1,25 @@
+pkgname=protonvpn-cli
+pkgver=1.1.2
+pkgrel=1
+pkgdesc='ProtonVPN Command-Line Tool'
+
+arch=(x86_64)
+url='https://github.com/ProtonVPN/protonvpn-cli'
+
+depends=(
+  'openvpn'
+  'python'
+  'dialog'
+  'wget'
+)
+
+source=(https://raw.githubusercontent.com/ProtonVPN/protonvpn-cli/v${pkgver}/protonvpn-cli.sh)
+sha512sums=(2c44147497e22031c3828574fcd4897db607c71fc4e5660698e14956529f9ac1dc690d2398c7f92790416a6ad6361edbea57e21556d66aa78a6e5aa415451c84)
+
+package() {
+  mkdir -p "$pkgdir/usr/local/bin" "$pkgdir/usr/bin"
+  install -Dm755 protonvpn-cli.sh "$pkgdir/usr/local/bin/protonvpn-cli"
+  ln -sf "/usr/local/bin/protonvpn-cli" "$pkgdir/usr/local/bin/pvpn"
+  ln -sf "/usr/local/bin/protonvpn-cli" "$pkgdir/usr/bin/protonvpn-cli"
+  ln -sf "/usr/local/bin/protonvpn-cli" "$pkgdir/usr/bin/pvpn"
+}
